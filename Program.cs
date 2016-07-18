@@ -34,7 +34,7 @@ namespace SixTask
                 }
             }
             else
-                yield return null;
+                yield return "Empty string.";
         }
     }
 
