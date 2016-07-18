@@ -17,17 +17,24 @@ namespace SixTask
 
         public void Transform()
         {
+            foreach (string word in Trans())
+            {
+                Console.WriteLine(word);
+            }
+        }
+        
+        public IEnumerable<string> Trans ()
+        {
             if (!string.IsNullOrEmpty(Text) && Text.Trim().Length > 0)
             {
-                Console.WriteLine("\nText transformed into: "+Text.ToUpper()+"\n");
+                string[] words = Text.Split(new char[] { ' ', ',', '.', ':', '/', ';', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < words.Length; i++)
+                {
+                    yield return words[i].ToUpper();
+                }
             }
             else
-            {
-                Text = null;
-                int? ii;
-                ii = Convert.ToInt32(Text);
-                Console.WriteLine("\nText transformed into: "+ii+"\n");
-            }
+                yield return null;
         }
     }
 
